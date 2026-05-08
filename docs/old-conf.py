@@ -31,9 +31,7 @@ author = "Canonical Ltd."
 # Sidebar documentation title; best kept reasonably short
 #
 # TODO: To include a version number, add it here (hardcoded or automated).
-# version = "beta"
-
-
+#
 # TODO: To disable the title, set to an empty string.
 
 html_title = project + " documentation"
@@ -62,7 +60,8 @@ html_title = project + " documentation"
 #         -H 'Accept: application/vnd.github.v3.raw' \
 #         https://api.github.com/repos/canonical/<REPO> | jq '.created_at'
 
-copyright = f"{datetime.date.today().year}"
+copyright = "%s CC-BY-SA, %s" % (datetime.date.today().year, author)
+
 
 # Documentation website URL
 #
@@ -72,6 +71,7 @@ copyright = f"{datetime.date.today().year}"
 #       and is used by social media platforms; see https://ogp.me/
 
 ogp_site_url = "https://documentation.ubuntu.com/chisel/"
+
 
 # Preview name of the documentation website
 #
@@ -84,63 +84,33 @@ ogp_site_name = project
 #
 # TODO: To customise the preview image, update as needed.
 
-ogp_image = "https://assets.ubuntu.com/v1/253da317-image-document-ubuntudocs.svg"
+ogp_image = "https://assets.ubuntu.com/v1/cc828679-docs_illustration.svg"
 
 
 # Product favicon; shown in bookmarks, browser tabs, etc.
 
 # TODO: To customise the favicon, uncomment and update as needed.
 
-# html_favicon = ".sphinx/_static/favicon.png"
+# html_favicon = '.sphinx/_static/favicon.png'
 
 
 # Dictionary of values to pass into the Sphinx context for all pages:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_context
 
-# TODO: Adjust to point to the repository where your documentation source files
-# are stored.
-
-github_repo = "https://github.com/canonical/chisel-docs"
-
-# TODO: Select the default syntax for docs source files.
-# This is for a fallback view/edit source code buttons.
-
-default_source_extension = ".md"
-
-# TODO: Change to your product website URL,
-#       dropping the 'https://' prefix, e.g. 'ubuntu.com/lxd'.
-#       If there is no such website - set to '/' or remove the {{ product_page }}
-#       link from the page header template.
-
-product_page = "https://github.com/canonical/chisel"
-
 html_context = {
     # Product page URL; can be different from product docs URL
+    #
+    # TODO: Change to your product website URL,
+    #       dropping the 'https://' prefix, e.g. 'ubuntu.com/lxd'.
     #
     # TODO: If there's no such website,
     #       remove the {{ product_page }} link from the page header template
     #       (usually .sphinx/_templates/header.html; also, see README.rst).
-    "product_page": product_page,
+    "product_page": "github.com/canonical/chisel",
     # Product tag image; the orange part of your logo, shown in the page header
     #
     # TODO: To add a tag image, uncomment and update as needed.
     # 'product_tag': '_static/tag.png',
-    # 
-    # Inherit project name
-    "project": project, 
-    # Inherit the author value
-    "author": author,
-    # Licensing information
-    # 
-    # TODO: Change your product's license name and a link to its file.
-    # For the name, we recommend using the standard shorthand identifier from
-    # https://spdx.org/licenses
-    # For the URL, link directly to the product's license statement, typically found on
-    # the product's home page or in its GitHub project.
-    "license": {
-        "name": "LGPL-3.0-only",
-        "url": github_repo + "/blob/main/LICENSE",
-    },
     # Your Discourse instance URL
     #
     # TODO: Change to your Discourse instance URL or leave empty.
@@ -162,13 +132,15 @@ html_context = {
     #
     # NOTE: If set, links for viewing the documentation source files
     #       and creating GitHub issues are added at the bottom of each page.
-    "github_url": github_repo,
+    "github_url": "https://github.com/canonical/chisel-docs",
     # Docs branch in the repo; used in links for viewing the source files
     #
     # TODO: To customise the branch, uncomment and update as needed.
-    "repo_default_branch": "main",
+    'repo_default_branch': 'main',
     # Docs location in the repo; used in links for viewing the source files
     #
+
+
     # TODO: To customise the directory, uncomment and update as needed.
     "repo_folder": "/docs/",
     # TODO: To enable or disable the Previous / Next buttons at the bottom of pages
@@ -177,42 +149,16 @@ html_context = {
     # TODO: To enable listing contributors on individual pages, set to True
     "display_contributors": False,
 
-    # Required for feedback button    
-    "feedback": True,
-    "github_issues": "enabled",
-    "default_source_extension": default_source_extension,
-    "default_edit_url": github_repo + "/edit/main/docs/index" + default_source_extension,
-    "default_view_url": github_repo + "/blob/main/docs/index" + default_source_extension,
-
-    # Horizontal Nav Menu
-    "company": "Canonical",
-    # "link1_URL": "https://canonical-starter-pack.readthedocs-hosted.com/",
-    # "link1_name": "First optional link",
-    # "link2_URL": "https://canonical-starter-pack.readthedocs-hosted.com/",
-    # "link2_name": "Second optional link",
-
-    # Canonical Product menu
-    # Uncomment if you need a product menu added on the top of every page
-    # "add_product_menu": True,
-    
-    # Main Horizontal menu
-    # "is_docs": False, # Purpose unknown
-    "logo_link_URL": "https://documentation.ubuntu.com",
-    "logo_img_URL": "https://assets.ubuntu.com/v1/82818827-CoF_white.svg",
-    "logo_title": "Canonical",
-
-    # TODO: Customize the footer.
-    "footer": {
-        # Whether to add the product name as the first entry.
-        "product": True,
-        # Whether to add the license as the second entry.
-        "license": True,
-        # List your footer entries. Accepts HTML tags.
-        "entries": [
-            '<a class="js-revoke-cookie-manager" href="#tracker-settings">Manage your tracker settings</a>',
-        ]
-    }
+    # Required for feedback button
+    'github_issues': 'enabled',
 }
+
+html_extra_path = []
+
+# Allow opt-in build of the OpenAPI "Hello" example so docs stay clean by default.
+if os.getenv("OPENAPI", ""):
+    tags.add("openapi")
+    html_extra_path.append("how-to/assets/openapi.yaml")
 
 # TODO: To enable the edit button on pages, uncomment and change the link to a
 # public repository on GitHub or Launchpad. Any of the following link domains
@@ -230,31 +176,30 @@ html_context = {
 # TODO: If your documentation is hosted on https://docs.ubuntu.com/,
 #       uncomment and update as needed.
 
-# slug = ''
-
-# Limit the number of levels for Table of contents
-localtoc_max_depth = 3
+slug = "chisel"
 
 #######################
 # Sitemap configuration: https://sphinx-sitemap.readthedocs.io/
 #######################
 
-# Base URL of RTD hosted project
+# Use RTD canonical URL to ensure duplicate pages have a specific canonical URL
 
 html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
 
 # URL scheme. Add language and version scheme elements.
 # When configured with RTD variables, check for RTD environment so manual runs succeed:
 
-if "READTHEDOCS_VERSION" in os.environ:
+if 'READTHEDOCS_VERSION' in os.environ:
     version = os.environ["READTHEDOCS_VERSION"]
-    sitemap_url_scheme = "{version}{link}"
+    sitemap_url_scheme = '{version}{link}'
 else:
-    sitemap_url_scheme = "MANUAL/{link}"
+    sitemap_url_scheme = 'MANUAL/{link}'
 
 # Include `lastmod` dates in the sitemap:
 
 sitemap_show_lastmod = True
+
+# Exclude generated pages from the sitemap:
 
 sitemap_excludes = [
     '404/',
@@ -262,11 +207,13 @@ sitemap_excludes = [
     'search/',
 ]
 
+# TODO: Add more pages to sitemap_excludes if needed. Wildcards are supported.
+#       For example, to exclude module pages generated by autodoc, add '_modules/*'.
+
 #######################
 # Template and asset locations
 #######################
 
-html_theme = "ulwazi"
 html_static_path = ["_static"]
 templates_path = ["_static/_templates"]
 
@@ -297,10 +244,8 @@ redirects = {}
 
 linkcheck_ignore = [
     "http://127.0.0.1:8000",
-    "https://github.com/canonical/ACME/*",
-    "https://www.gnu.org/*"
-    ]
-
+    "https://www.gnu.org/*",
+]
 
 # A regex list of URLs where anchors are ignored by 'make linkcheck'
 
@@ -320,85 +265,56 @@ linkcheck_retries = 3
 # NOTE: By default, the following MyST extensions are enabled:
 #       substitution, deflist, linkify
 
-myst_enable_extensions = {
-    "colon_fence",
-    "deflist",
-    "substitution",
-    "tasklist",
-    "attrs_inline"
-}
+myst_enable_extensions = set(
+    ["substitution", "deflist", "linkify", "tasklist", "attrs_inline"]
+)
 
 
 # Custom Sphinx extensions; see
 # https://www.sphinx-doc.org/en/master/usage/extensions/index.html
 
 # NOTE: The canonical_sphinx extension is required for the starter pack.
-#       It automatically enables the following extensions:
-#       - custom-rst-roles
-#       - myst_parser
-#       - notfound.extension
-#       - related-links
-#       - sphinx_copybutton
-#       - sphinx_design
-#       - sphinx_reredirects
-#       - sphinx_tabs.tabs
-#       - sphinxcontrib.jquery
-#       - sphinxext.opengraph
-#       - terminal-output
-#       - youtube-links
 
 extensions = [
-    "sphinx_terminal",
-    "sphinxcontrib.cairosvgconverter",
-    "sphinx_last_updated_by_git",
-    "sphinx.ext.intersphinx",
-    "sphinx_sitemap",
-    "ulwazi",
-    "canonical_sphinx_config",
-    "myst_parser",
+    "canonical_sphinx",
     "notfound.extension",
-    "sphinx_config_options",
-    "sphinxcontrib.jquery",
-    "sphinx_tabs.tabs",
     "sphinx_design",
+    "sphinx_reredirects",
+    "sphinx_tabs.tabs",
+    "sphinxcontrib.jquery",
+    "sphinxext.opengraph",
+    "sphinx_config_options",
     "sphinx_contributor_listing",
     "sphinx_filtered_toctree",
     "sphinx_related_links",
     "sphinx_roles",
+    "sphinx_terminal",
     "sphinx_ubuntu_images",
+    "sphinx_youtube_links",
+    "sphinxcontrib.cairosvgconverter",
+    "sphinx_last_updated_by_git",
+    "sphinx.ext.intersphinx",
+    "sphinx_sitemap",
 ]
 
 # Excludes files or directories from processing
 
 exclude_patterns = [
     "doc-cheat-sheet*",
-    "_build", 
-    "Thumbs.db", 
-    ".DS_Store"
 ]
 
 # Adds custom CSS files, located under 'html_static_path'
 
 html_css_files = [
-    'cookie-banner.css',
-    'tasklist.css'
+    'cookie-banner.css'
 ]
-
-
 
 # Adds custom JavaScript files, located under 'html_static_path'
 
 html_js_files = [
     'bundle.js',
-    'tasklist.js'
 ]
 
-
-# Syntax highlighting settings
-
-highlight_language = "none" # default
-pygments_style = "autumn" # see https://pygments.org/styles for more
-pygments_dark_style = "github-dark" # see https://pygments.org/styles for more
 
 # Specifies a reST snippet to be appended to each .rst file
 
@@ -436,10 +352,6 @@ rst_prolog = """
    :class: align-center
 .. role:: h2
     :class: hclass2
-.. role:: woke-ignore
-    :class: woke-ignore
-.. role:: vale-ignore
-    :class: vale-ignore
 """
 
 # Workaround for https://github.com/canonical/canonical-sphinx/issues/34
@@ -449,19 +361,20 @@ if "discourse_prefix" not in html_context and "discourse" in html_context:
 
 # Workaround for substitutions.yaml
 
-if os.path.exists("./reuse/substitutions.yaml"):
-    with open("./reuse/substitutions.yaml", "r") as fd:
+if os.path.exists('./reuse/substitutions.yaml'):
+    with open('./reuse/substitutions.yaml', 'r') as fd:
         myst_substitutions = yaml.safe_load(fd.read())
 
 # Add configuration for intersphinx mapping
 
 intersphinx_mapping = {}
 
-# PDF
-
-set_modern_pdf_config = True
+#Adding clickable checkboxes
+#def setup(app):
+    #app.add_js_file("tasklist.js")
 
 #Removing bulletpoints created so checklists are clickable
-#def setup(app):
-    #app.add_css_file("tasklist.css")
-    #app.add_js_file("tasklist.js")  #checkbox-enabling JS
+def setup(app):
+    app.add_css_file("tasklist.css")
+    app.add_js_file("tasklist.js")  #checkbox-enabling JS
+
