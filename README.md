@@ -39,6 +39,20 @@ sudo apt install make python3 python3.12-venv
 ```
 
 
+### Workshop
+
+[Workshop](https://github.com/canonical/workshop) can also be used for local
+development. With the `workshop` snap installed, one can create a development environment using:
+
+```
+workshop launch
+# Then serve the local render of the docs
+workshop run chisel-docs-dev run
+```
+
+See the [workshop documentation](https://ubuntu.com/workshop/docs/) for more information.
+
+
 ### Build documentation locally
 
 The Makefile in the [docs/](docs/) directory contains many targets. To see all
