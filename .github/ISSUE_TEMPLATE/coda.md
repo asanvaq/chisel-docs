@@ -1,6 +1,6 @@
 ---
 name: CODA issue template
-about: Applies the CODA issue structure.
+about: Only for maintainers. Applies Canonical's Open Documentation Academy (CODA) issue structure.
 title: 'CODA: short description'
 labels: 'coda'
 ---
