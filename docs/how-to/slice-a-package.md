@@ -8,30 +8,9 @@ myst:
 
 # Slice a package
 
-This guide provides instructions on the slicing of an Ubuntu package for
-Chisel.
-
-A package slice is represented via a
-{ref}`Slice Definitions File<slice_definitions_ref>` (aka SDF), and the creation
-of said slice definitions is a result of the **inspection** and **design
-process** depicted below.
-
-As an example, this guide will focus on **slicing the `vim-tiny` package from
-Ubuntu 24.04**.
-
 (create_sdf_inspect_pkg)=
 
 ## Inspect the package
-
-Your first task is to **understand the package** to be sliced.
-
-Packages are primarily composed of files for installation and may reference
-additional packages as dependencies such as libraries or other resources.
-
-During the slicing process, we identify subsets of files in a package which can
-be installed alone to accomplish one or more tasks. Consequently, the
-dependencies required for this slice may be a subset of the dependencies
-indicated by the package.
 
 - [ ] 1.1 **Is it an Ubuntu package?**
 
