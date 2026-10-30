@@ -10,10 +10,7 @@ myst:
 
 ## What are package slices?
 
-Since Debian packages are simply archives that can be inspected, navigated and
-deconstructed, it is possible to define slices of packages that contain
-minimal, complementary, loosely-coupled sets of files based on package metadata
-and content. Such **package slices** are subsets of Debian packages, with their
+Such **package slices** are subsets of Debian packages, with their
 own content and set of dependencies to other internal and external slices.
 
 The use of package slices provides the ability to build minimal root file
