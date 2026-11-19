@@ -8,22 +8,7 @@ myst:
 
 The Chisel team welcomes changes, suggestions, and questions. There are a few options to contribute to this project's documentation:
 
-- Make a change in the codebase. Learn how to do so in the project's [contributing guide](https://github.com/canonical/chisel-docs#contribution-guides).
-- Request a change or report a problem on [GitHub](https://github.com/canonical/chisel-docs/issues/new).
-- Bring your experience and ideas to the [Chisel Matrix channel](https://matrix.to/#/#chisel:ubuntu.com).
-- Volunteer for a Chisel task in the [Canonical Open Documentation Academy](contribute-to-this-documentation-coda).
-
-Your contributions to the project are valuable. The team sees authorship as being on
-equal footing with development. All contributors receive
-recognition in the Chisel release that they work on.
-
-(contribute-to-this-documentation-coda)=
-
-## Canonical Open Documentation Academy
-
-The [Canonical Open Documentation Academy](https://documentation.academy/) (CODA) is a place where writers and developers
-give hands-on help and mentoring to anyone wanting to participate in open source documentation. It's
-an initiative led by the documentation team at Canonical.
+To contribute to the documentation, you will now have to do a completely new process that invalidates what was previously written here.
 
 CODA provides:
 
